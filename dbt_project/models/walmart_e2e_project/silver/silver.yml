@@ -1,0 +1,39 @@
+version: 2
+
+models:
+    - name: department_scd1_transformed
+      description: "dbt model to copy department data from aws and perform scd1"
+      # columns:
+      #     - name: source_data
+      #       description: "The primary key for this table"
+      #       tests:
+      #           - unique
+      #           - not_null
+    - name: store_scd1_transformed
+      description: "dbt model to copy store data from aws and perform scd1"
+    - name: fact_scd2_transformed
+      description: "dbt model to copy fact data from aws and perform scd2"
+
+
+    # - name: country_details_transform
+    #   description: "dbt model to create the country details transform table"
+    #   columns:
+    #       - name: "(country_common_name||country_continent_name||country_currency_name)"
+    #         description: "The primary key combination for this table"
+    #         tests:
+    #             - unique
+    #             - not_null
+
+sources:
+    - name: bronze
+      tables:
+        - name: department_copy
+          description: "Copy of the department CSV"
+          external:
+            location: "s3://ola-e2e-walmart-project-data-bucket/data/department.csv"
+        - name: fact_copy
+          external:
+            location: "s3://ola-e2e-walmart-project-data-bucket/data/fact.csv"
+        - name: store_copy
+          external:
+            location: "s3://ola-e2e-walmart-project-data-bucket/data/store.csv"
