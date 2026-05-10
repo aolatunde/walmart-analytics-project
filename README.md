@@ -39,8 +39,3 @@ streamlit run streamlit_app/app.py
 - `SNOWFLAKE_DATABASE`
 - `SNOWFLAKE_SCHEMA`
 
-## Notes
-
-- Do not commit `.env` or Streamlit secrets files.
-- Rebuild dbt gold models after schema changes so the dashboard can use the latest columns, including `STORE_DATE`.
-- The Streamlit pages use Snowflake-side aggregates to keep dashboard payloads small.
